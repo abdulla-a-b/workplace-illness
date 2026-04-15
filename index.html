@@ -240,6 +240,10 @@
     </div>
 
     <div class="pr-section-label">Patient Demographics</div>
+    <div class="pr-grid pr-grid-2" style="margin-bottom:6px">
+      <div class="pr-field"><span class="lbl">Patient Name</span><span class="val" id="pr-patient_name">—</span></div>
+      <div class="pr-field"><span class="lbl">Mobile Number</span><span class="val" id="pr-mobile_number">—</span></div>
+    </div>
     <div class="pr-grid pr-grid-4">
       <div class="pr-field"><span class="lbl">Age</span><span class="val" id="pr-age">—</span></div>
       <div class="pr-field"><span class="lbl">Sex</span><span class="val" id="pr-sex">—</span></div>
@@ -323,7 +327,7 @@
 <header>
   <div class="header-inner">
     <div class="header-badge">Workplace Health Research · Data Entry</div>
-    <h1>Workplace <span>Illness</span> Registry</h1>
+    <h1>Occupational <span>Illness</span> Registry</h1>
     <p>For authorized healthcare professionals only. All entries are logged with timestamp.</p>
   </div>
 </header>
@@ -348,6 +352,10 @@
     <div class="section">
       <div class="section-header"><div class="section-num">01</div><h2>Patient Demographics</h2></div>
       <div class="section-body">
+        <div class="grid-2" style="margin-bottom:1.25rem">
+          <div class="field"><label>Patient Name <span class="req">*</span></label><input type="text" name="patient_name" placeholder="e.g. Md. Rahim Uddin" required></div>
+          <div class="field"><label>Mobile Number <span class="unit">(Serial / Contact)</span></label><input type="tel" name="mobile_number" placeholder="e.g. 01712-345678" pattern="[0-9+\-\s]{7,15}"></div>
+        </div>
         <div class="grid-4">
           <div class="field"><label>Age <span class="req">*</span> <span class="unit">(years)</span></label><input type="number" name="age" min="15" max="80" placeholder="e.g. 34" required></div>
           <div class="field"><label>Sex <span class="req">*</span></label><select name="sex" required><option value="">— select —</option><option>Male</option><option>Female</option><option>Other</option></select></div>
@@ -536,6 +544,8 @@
     document.getElementById('pr-facility').textContent    = fmt(d.facility);
     document.getElementById('pr-sig-name').textContent    = fmt(d.doctor_name);
     document.getElementById('pr-sig-bmdc').textContent    = d.bmdc_reg ? 'BMDC Reg: ' + d.bmdc_reg : '';
+    document.getElementById('pr-patient_name').textContent  = fmt(d.patient_name);
+    document.getElementById('pr-mobile_number').textContent = fmt(d.mobile_number);
     document.getElementById('pr-age').textContent         = d.age ? d.age + ' years' : '—';
     document.getElementById('pr-sex').textContent         = fmt(d.sex);
     document.getElementById('pr-height_cm').textContent   = d.height_cm ? d.height_cm + ' cm' : '—';
