@@ -269,6 +269,14 @@
       <div></div>
     </div>
 
+    <div class="pr-section-label">Environmental &amp; Risk Indicators</div>
+    <div class="pr-grid pr-grid-4">
+      <div class="pr-field"><span class="lbl">Chemical / Dust Exposure</span><span class="val" id="pr-chemical_exposure">—</span></div>
+      <div class="pr-field"><span class="lbl">Noise Exposure Level</span><span class="val" id="pr-noise_exposure">—</span></div>
+      <div class="pr-field"><span class="lbl">Physical Strain Level</span><span class="val" id="pr-physical_strain">—</span></div>
+      <div class="pr-field"><span class="lbl">Temperature Condition</span><span class="val" id="pr-temperature_condition">—</span></div>
+    </div>
+
     <div class="pr-section-label">Clinical Presentation</div>
     <div class="pr-grid pr-grid-2">
       <div class="pr-field"><span class="lbl">Primary Symptom(s)</span><span class="val long" id="pr-primary_symptoms">—</span></div>
@@ -342,7 +350,7 @@
 <header>
   <div class="header-inner">
     <div class="header-badge">Workplace Health Research · Data Entry</div>
-    <h1>Workplace <span>Illness</span> Registry</h1>
+    <h1>Occupational <span>Illness</span> Registry</h1>
     <p>For authorized healthcare professionals only. All entries are logged with timestamp.</p>
   </div>
 </header>
@@ -350,6 +358,7 @@
 <div class="container">
   <div class="progress-wrap" id="progressBar">
     <div class="progress-step active"></div>
+    <div class="progress-step"></div>
     <div class="progress-step"></div>
     <div class="progress-step"></div>
     <div class="progress-step"></div>
@@ -413,7 +422,6 @@
             <label class="check-item"><input type="checkbox" name="job_nature" value="Day Shift"><span>Day Shift</span></label>
             <label class="check-item"><input type="checkbox" name="job_nature" value="Night Shift"><span>Night Shift</span></label>
             <label class="check-item"><input type="checkbox" name="job_Nature" value="Rotation Shift"><span>Rotation Shift</span></label>
-
           </div>
         </div>
         <div class="field">
@@ -435,9 +443,56 @@
       </div>
     </div>
 
-    <!-- 03. Clinical Presentation -->
+    <!-- 03. Environmental & Risk Indicators -->
     <div class="section">
-      <div class="section-header"><div class="section-num">03</div><h2>Clinical Presentation</h2></div>
+      <div class="section-header"><div class="section-num">03</div><h2>Environmental &amp; Risk Indicators</h2></div>
+      <div class="section-body">
+        <div class="grid-4">
+          <div class="field">
+            <label>Exposure to Chemicals / Dust</label>
+            <select name="chemical_exposure">
+              <option value="">— select —</option>
+              <option>No</option>
+              <option>Yes — Chemical</option>
+              <option>Yes — Dust / Fibre</option>
+              <option>Yes — Both</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Noise Exposure Level</label>
+            <select name="noise_exposure">
+              <option value="">— select —</option>
+              <option>Normal (below 85 dB)</option>
+              <option>Above Normal (85–100 dB)</option>
+              <option>High (above 100 dB)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Physical Strain Level</label>
+            <select name="physical_strain">
+              <option value="">— select —</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Temperature Condition</label>
+            <select name="temperature_condition">
+              <option value="">— select —</option>
+              <option>Normal</option>
+              <option>Cold</option>
+              <option>Hot</option>
+              <option>Variable / Fluctuating</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04. Clinical Presentation -->
+    <div class="section">
+      <div class="section-header"><div class="section-num">04</div><h2>Clinical Presentation</h2></div>
       <div class="section-body">
 
         <!-- Symptoms -->
@@ -569,9 +624,9 @@
       </div>
     </div>
 
-    <!-- 04. Doctor's Assessment -->
+    <!-- 05. Doctor's Assessment -->
     <div class="section">
-      <div class="section-header"><div class="section-num">04</div><h2>Doctor's Assessment</h2></div>
+      <div class="section-header"><div class="section-num">05</div><h2>Doctor's Assessment</h2></div>
       <div class="section-body">
         <div class="grid-2">
           <div class="field"><label>Suggested Diagnostic Tests</label><textarea name="suggested_tests" placeholder="e.g. CBC, X-Ray lumber spine, EMG/NCV, Blood glucose fasting"></textarea></div>
@@ -589,9 +644,9 @@
       </div>
     </div>
 
-    <!-- 05. Attending Professional -->
+    <!-- 06. Attending Professional -->
     <div class="section">
-      <div class="section-header"><div class="section-num">05</div><h2>Attending Professional</h2></div>
+      <div class="section-header"><div class="section-num">06</div><h2>Attending Professional</h2></div>
       <div class="section-body">
         <div class="grid-4">
           <div class="field"><label>Doctor / Staff Name <span class="req">*</span></label><input type="text" name="doctor_name" placeholder="Dr. Name" required></div>
@@ -636,7 +691,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz7Xt0tBDAuoiF_xJJ4hkuHv2JWdK31vpnQm8pl-58p7DauufkUFjCZwQKoILolsKwd/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwZSpuy9qWBl6quBDkcsE5cSnVwXeIH3LuVV6f64D5amc9XjCwTkil7v9KbLDZOZFU/exec';
   let lastSubmission = {};
 
   /* Show/hide operation detail field */
@@ -700,6 +755,10 @@
     document.getElementById('pr-years_in_role').textContent  = d.years_in_role  ? d.years_in_role  + ' yrs' : '—';
     document.getElementById('pr-job_nature').textContent  = fmt(d.job_nature);
     document.getElementById('pr-job_area').textContent    = fmt(d.job_area);
+    document.getElementById('pr-chemical_exposure').textContent     = fmt(d.chemical_exposure);
+    document.getElementById('pr-noise_exposure').textContent        = fmt(d.noise_exposure);
+    document.getElementById('pr-physical_strain').textContent       = fmt(d.physical_strain);
+    document.getElementById('pr-temperature_condition').textContent = fmt(d.temperature_condition);
     document.getElementById('pr-primary_symptoms').textContent   = fmt(d.primary_symptoms);
     document.getElementById('pr-secondary_symptoms').textContent = fmt(d.secondary_symptoms);
     document.getElementById('pr-duration').textContent    = d.duration_days ? d.duration_days + ' ' + (d.duration_unit || 'Days') : '—';
