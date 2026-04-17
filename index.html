@@ -277,7 +277,22 @@
     <div class="pr-grid pr-grid-3" style="margin-top:5px">
       <div class="pr-field"><span class="lbl">Duration</span><span class="val" id="pr-duration">—</span></div>
       <div class="pr-field"><span class="lbl">Severity</span><span class="val" id="pr-severity">—</span></div>
+      <div class="pr-field"><span class="lbl">Type of Illness</span><span class="val" id="pr-illness_type">—</span></div>
+    </div>
+    <div class="pr-grid pr-grid-4" style="margin-top:5px">
+      <div class="pr-field"><span class="lbl">Happened Earlier?</span><span class="val" id="pr-illness_earlier">—</span></div>
+      <div class="pr-field"><span class="lbl">Consultation Taken?</span><span class="val" id="pr-consultation_taken">—</span></div>
+      <div class="pr-field"><span class="lbl">Medication Ongoing?</span><span class="val" id="pr-medication_ongoing">—</span></div>
+      <div class="pr-field"><span class="lbl">Operation History?</span><span class="val" id="pr-operation_history">—</span></div>
+    </div>
+    <div class="pr-grid pr-grid-2" style="margin-top:5px">
+      <div class="pr-field"><span class="lbl">Operation Details</span><span class="val" id="pr-operation_detail">—</span></div>
       <div class="pr-field"><span class="lbl">Provisional Diagnosis</span><span class="val" id="pr-diagnosis">—</span></div>
+    </div>
+    <div class="pr-grid pr-grid-3" style="margin-top:5px">
+      <div class="pr-field"><span class="lbl">Chronic Disease(s)</span><span class="val long" id="pr-chronic_disease">—</span></div>
+      <div class="pr-field"><span class="lbl">Drinking / Smoking Habit</span><span class="val long" id="pr-habit">—</span></div>
+      <div class="pr-field"><span class="lbl">Family Disease History</span><span class="val long" id="pr-family_history">—</span></div>
     </div>
 
     <div class="pr-section-label">Doctor's Assessment</div>
@@ -327,7 +342,7 @@
 <header>
   <div class="header-inner">
     <div class="header-badge">Workplace Health Research · Data Entry</div>
-    <h1>Occupational <span>Illness</span> Registry</h1>
+    <h1>Workplace <span>Illness</span> Registry</h1>
     <p>For authorized healthcare professionals only. All entries are logged with timestamp.</p>
   </div>
 </header>
@@ -397,7 +412,8 @@
             <label class="check-item"><input type="checkbox" name="job_nature" value="Mixed"><span>Mixed</span></label>
             <label class="check-item"><input type="checkbox" name="job_nature" value="Day Shift"><span>Day Shift</span></label>
             <label class="check-item"><input type="checkbox" name="job_nature" value="Night Shift"><span>Night Shift</span></label>
-            <label class="check-item"><input type="checkbox" name="job_nature" value="Rotation Shift"><span>Rotation Shift</span></label>
+            <label class="check-item"><input type="checkbox" name="job_Nature" value="Rotation Shift"><span>Night Shift</span></label>
+
           </div>
         </div>
         <div class="field">
@@ -423,16 +439,133 @@
     <div class="section">
       <div class="section-header"><div class="section-num">03</div><h2>Clinical Presentation</h2></div>
       <div class="section-body">
+
+        <!-- Symptoms -->
         <div class="grid-2">
           <div class="field"><label>Primary Symptom(s) <span class="req">*</span></label><textarea name="primary_symptoms" placeholder="e.g. Persistent lower back pain, radiating to left leg" required></textarea></div>
           <div class="field"><label>Secondary Symptom(s)</label><textarea name="secondary_symptoms" placeholder="e.g. Numbness in fingers, mild headache in evening"></textarea></div>
         </div>
         <hr class="divider">
+
+        <!-- Duration + Severity + Type -->
         <div class="grid-3">
           <div class="field"><label>Duration of Illness <span class="req">*</span></label><input type="number" name="duration_days" min="1" placeholder="e.g. 14" required></div>
           <div class="field"><label>Duration Unit</label><select name="duration_unit"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option></select></div>
           <div class="field"><label>Severity</label><select name="severity"><option value="">— select —</option><option>Mild</option><option>Moderate</option><option>Severe</option><option>Critical</option></select></div>
         </div>
+        <hr class="divider">
+
+        <!-- Type of illness + Earlier + Consultation + Medication -->
+        <div class="grid-4">
+          <div class="field">
+            <label>Type of Illness</label>
+            <select name="illness_type">
+              <option value="">— select —</option>
+              <option>Physical Illness</option>
+              <option>Mental Health Issues</option>
+              <option>Occupational Risk</option>
+              <option>Mixed (Physical + Mental)</option>
+              <option>Mixed (Physical + Occupational)</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Illness Happened Earlier?</label>
+            <select name="illness_earlier">
+              <option value="">— select —</option>
+              <option>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Medical Consultation Taken?</label>
+            <select name="consultation_taken">
+              <option value="">— select —</option>
+              <option>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Medication Going On?</label>
+            <select name="medication_ongoing">
+              <option value="">— select —</option>
+              <option>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+        </div>
+        <hr class="divider">
+
+        <!-- Chronic diseases -->
+        <div class="field" style="margin-bottom:1.25rem">
+          <label>Chronic Disease(s) <span class="unit">(select all that apply)</span></label>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Diabetes"><span>Diabetes</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Hypertension (High BP)"><span>Hypertension (High BP)</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Asthma"><span>Asthma</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Chronic Bronchitis / COPD"><span>Chronic Bronchitis / COPD</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Heart Disease"><span>Heart Disease</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Kidney Disease"><span>Kidney Disease</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Liver Disease"><span>Liver Disease</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Thyroid Disorder"><span>Thyroid Disorder</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Arthritis / Joint Disease"><span>Arthritis / Joint Disease</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Anaemia"><span>Anaemia</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="Depression / Anxiety"><span>Depression / Anxiety</span></label>
+            <label class="check-item"><input type="checkbox" name="chronic_disease" value="None"><span>None</span></label>
+          </div>
+        </div>
+        <hr class="divider">
+
+        <!-- Operation history -->
+        <div class="grid-2" style="margin-bottom:1.25rem">
+          <div class="field">
+            <label>Any Operation History?</label>
+            <select name="operation_history" id="operationSelect" onchange="toggleOp(this.value)">
+              <option value="">— select —</option>
+              <option>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+          <div class="field" id="operationDetailWrap" style="display:none">
+            <label>Operation Details <span class="unit">(brief description)</span></label>
+            <input type="text" name="operation_detail" placeholder="e.g. Appendectomy 2019, Hernia repair 2022">
+          </div>
+        </div>
+        <hr class="divider">
+
+        <!-- Drinking / Smoking -->
+        <div class="field" style="margin-bottom:1.25rem">
+          <label>Drinking / Smoking Habit <span class="unit">(select all that apply)</span></label>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="habit" value="Non-smoker"><span>Non-smoker</span></label>
+            <label class="check-item"><input type="checkbox" name="habit" value="Smoker (current)"><span>Smoker (current)</span></label>
+            <label class="check-item"><input type="checkbox" name="habit" value="Ex-smoker"><span>Ex-smoker</span></label>
+            <label class="check-item"><input type="checkbox" name="habit" value="Bidi smoker"><span>Bidi smoker</span></label>
+            <label class="check-item"><input type="checkbox" name="habit" value="Tobacco / Jarda"><span>Tobacco / Jarda</span></label>
+            <label class="check-item"><input type="checkbox" name="habit" value="Alcohol (occasional)"><span>Alcohol (occasional)</span></label>
+            <label class="check-item"><input type="checkbox" name="habit" value="Alcohol (regular)"><span>Alcohol (regular)</span></label>
+            <label class="check-item"><input type="checkbox" name="habit" value="None"><span>None</span></label>
+          </div>
+        </div>
+        <hr class="divider">
+
+        <!-- Family disease history -->
+        <div class="field">
+          <label>Family Disease History <span class="unit">(select all that apply)</span></label>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="family_history" value="Diabetes"><span>Diabetes</span></label>
+            <label class="check-item"><input type="checkbox" name="family_history" value="Hypertension"><span>Hypertension</span></label>
+            <label class="check-item"><input type="checkbox" name="family_history" value="Heart Disease"><span>Heart Disease</span></label>
+            <label class="check-item"><input type="checkbox" name="family_history" value="Cancer"><span>Cancer</span></label>
+            <label class="check-item"><input type="checkbox" name="family_history" value="Asthma / Respiratory"><span>Asthma / Respiratory</span></label>
+            <label class="check-item"><input type="checkbox" name="family_history" value="Kidney Disease"><span>Kidney Disease</span></label>
+            <label class="check-item"><input type="checkbox" name="family_history" value="Mental Health Issues"><span>Mental Health Issues</span></label>
+            <label class="check-item"><input type="checkbox" name="family_history" value="Thyroid Disorder"><span>Thyroid Disorder</span></label>
+            <label class="check-item"><input type="checkbox" name="family_history" value="Stroke"><span>Stroke</span></label>
+            <label class="check-item"><input type="checkbox" name="family_history" value="None / Not known"><span>None / Not known</span></label>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -503,8 +636,13 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXBsV3z-uPdM_IB5umzP2mncLrv2T2QJyJfBSNnHtNpN6_bsshRJsBqnZzUdVin29n/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz7Xt0tBDAuoiF_xJJ4hkuHv2JWdK31vpnQm8pl-58p7DauufkUFjCZwQKoILolsKwd/exec';
   let lastSubmission = {};
+
+  /* Show/hide operation detail field */
+  function toggleOp(val) {
+    document.getElementById('operationDetailWrap').style.display = val === 'Yes' ? 'block' : 'none';
+  }
 
   /* Progress bar */
   const sections = document.querySelectorAll('.section');
@@ -565,6 +703,15 @@
     document.getElementById('pr-primary_symptoms').textContent   = fmt(d.primary_symptoms);
     document.getElementById('pr-secondary_symptoms').textContent = fmt(d.secondary_symptoms);
     document.getElementById('pr-duration').textContent    = d.duration_days ? d.duration_days + ' ' + (d.duration_unit || 'Days') : '—';
+    document.getElementById('pr-illness_type').textContent       = fmt(d.illness_type);
+    document.getElementById('pr-illness_earlier').textContent    = fmt(d.illness_earlier);
+    document.getElementById('pr-consultation_taken').textContent = fmt(d.consultation_taken);
+    document.getElementById('pr-medication_ongoing').textContent = fmt(d.medication_ongoing);
+    document.getElementById('pr-operation_history').textContent  = fmt(d.operation_history);
+    document.getElementById('pr-operation_detail').textContent   = fmt(d.operation_detail);
+    document.getElementById('pr-chronic_disease').textContent    = fmt(d.chronic_disease);
+    document.getElementById('pr-habit').textContent              = fmt(d.habit);
+    document.getElementById('pr-family_history').textContent     = fmt(d.family_history);
     document.getElementById('pr-diagnosis').textContent   = fmt(d.diagnosis);
     document.getElementById('pr-suggested_tests').textContent = fmt(d.suggested_tests);
     document.getElementById('pr-medicines').textContent   = fmt(d.medicines);
@@ -622,8 +769,11 @@
     const fd = new FormData(this);
     const data = {};
     for (const [k,v] of fd.entries()) { if (k !== 'job_area') data[k] = v; }
-    data.job_area     = getCheckedValues('job_area');
-    data.bp           = `${data.bp_systolic||'—'}/${data.bp_diastolic||'—'}`;
+    data.job_area        = getCheckedValues('job_area');
+    data.chronic_disease = getCheckedValues('chronic_disease');
+    data.habit           = getCheckedValues('habit');
+    data.family_history  = getCheckedValues('family_history');
+    data.bp              = `${data.bp_systolic||'—'}/${data.bp_diastolic||'—'}`;
     data.submitted_at = new Date().toISOString();
 
     try {
