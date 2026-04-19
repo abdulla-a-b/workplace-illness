@@ -309,6 +309,10 @@
       <div class="pr-field"><span class="lbl">Recommended Medicines</span><span class="val long" id="pr-medicines">—</span></div>
     </div>
     <div class="pr-grid pr-grid-2" style="margin-top:5px">
+      <div class="pr-field"><span class="lbl">Food Recommendation</span><span class="val long" id="pr-food_recommendation">—</span></div>
+      <div class="pr-field"><span class="lbl">Exercise Recommendation</span><span class="val long" id="pr-exercise_recommendation">—</span></div>
+    </div>
+    <div class="pr-grid pr-grid-2" style="margin-top:5px">
       <div class="pr-field"><span class="lbl">Follow-up Recommended</span><span class="val" id="pr-followup">—</span></div>
       <div class="pr-field"><span class="lbl">Additional Notes</span><span class="val" id="pr-notes">—</span></div>
     </div>
@@ -414,6 +418,7 @@
         <hr class="divider">
         <div class="field" style="margin-bottom:1.25rem">
           <label>Job Nature <span class="req">*</span></label>
+         
           <div class="check-grid">
             <label class="check-item"><input type="checkbox" name="job_nature" value="Sitting" required><span>Sitting job</span></label>
             <label class="check-item"><input type="checkbox" name="job_nature" value="Standing"><span>Standing job</span></label>
@@ -423,6 +428,7 @@
             <label class="check-item"><input type="checkbox" name="job_nature" value="Night Shift"><span>Night Shift</span></label>
             <label class="check-item"><input type="checkbox" name="job_Nature" value="Rotation Shift"><span>Rotation Shift</span></label>
           </div>
+
         </div>
         <div class="field">
           <label>Job / Work Area <span class="req">*</span></label>
@@ -633,6 +639,17 @@
           <div class="field"><label>Recommended Medicines</label><textarea name="medicines" placeholder="e.g. Naproxen 500mg BD × 5 days, Vitamin D3 1000IU OD"></textarea></div>
         </div>
         <hr class="divider">
+        <div class="grid-2">
+          <div class="field">
+            <label>Food Recommendation</label>
+            <textarea name="food_recommendation" placeholder="Foods to take: e.g. High-fibre vegetables, fruits, low-salt diet&#10;Foods to avoid: e.g. Fried food, excess sugar, processed meat"></textarea>
+          </div>
+          <div class="field">
+            <label>Exercise Recommendation</label>
+            <textarea name="exercise_recommendation" placeholder="e.g. Light walking 20 min/day, avoid heavy lifting, stretching exercises for lower back — 2 weeks rest from strenuous activity"></textarea>
+          </div>
+        </div>
+        <hr class="divider">
         <div class="grid-3">
           <div class="field"><label>Provisional Diagnosis</label><input type="text" name="diagnosis" placeholder="e.g. Occupational lumbar disc herniation"></div>
           <div class="field">
@@ -641,16 +658,6 @@
           </div>
           <div class="field"><label>Follow-up Recommended</label><select name="followup"><option value="">— select —</option><option>Within 3 days</option><option>Within 1 week</option><option>Within 2 weeks</option><option>1 month</option><option>Not required</option></select></div>
         </div>
-
-       
-      <div class="section-body">
-        <div class="grid-2">
-          <div class="field"><label>Recommended Food</label><textarea name="food_recommendation" placeholder="e.g. these kinds of food could not take"></textarea></div>
-          <div class="field"><label>Recommended Exercise</label><textarea name="exercise" placeholder="e.g. walking, swimming"></textarea></div>
-        </div>
-
-
-       
       </div>
     </div>
 
@@ -701,7 +708,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwZSpuy9qWBl6quBDkcsE5cSnVwXeIH3LuVV6f64D5amc9XjCwTkil7v9KbLDZOZFU/exec';
+  const APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
   let lastSubmission = {};
 
   /* Show/hide operation detail field */
@@ -784,6 +791,8 @@
     document.getElementById('pr-diagnosis').textContent   = fmt(d.diagnosis);
     document.getElementById('pr-suggested_tests').textContent = fmt(d.suggested_tests);
     document.getElementById('pr-medicines').textContent   = fmt(d.medicines);
+    document.getElementById('pr-food_recommendation').textContent     = fmt(d.food_recommendation);
+    document.getElementById('pr-exercise_recommendation').textContent = fmt(d.exercise_recommendation);
     document.getElementById('pr-followup').textContent    = fmt(d.followup);
     document.getElementById('pr-notes').textContent       = fmt(d.notes);
 
